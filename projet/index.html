@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client de l'API</title>
+    <script src="index.js" ></script>
+    <style>
+        
+        body {
+            margin: 10px 5% ;
+            color: white;
+            background-image: url(https://wallpaperaccess.com/full/5737470.jpg);
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+        #img {
+            align-items: center;
+            width: 175px;
+            height: auto;
+            max-height: 200px;
+            border: solid white 2px;
+        }
+        .card {
+            font-size: 20px;
+            background-color: #242121c9;
+            border-radius: 5px;
+            width: 200px;
+            text-align: center;
+            margin: 10px;
+            float: left;
+            transition: background-color 1s, transform 1s; 
+
+        }
+        h1{text-align: center;}
+        #create {text-align: center;
+            background-color: #a5a5a563;
+            border-radius: 10px;
+            padding-bottom: 10px;
+            color: white;
+            font-size: 20px;}
+
+        .card:hover {
+            background-color: #000000;
+            transform: translateY(-5px) scale(1.005) translateZ(0);
+        }
+
+        .card:active {
+            transform: scale(1) translateZ(0)
+        }
+        #class_input{
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+        #name_input{
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+        #hp_input{
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+        #atq_input{
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+        #valid {
+            background-color: #ffffff;
+            border: solid white 3px;
+            border-radius: 5px;
+            color: rgb(0, 0, 0);
+            padding: 8px 12px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            transition: background-color 1s, color 1s;
+        }
+
+        #valid:hover {
+            background-color: #000000;
+            color: rgb(255, 255, 255);
+        }
+        #modif {
+            background-color: #ffffff;
+            border: solid white 3px;
+            border-radius: 5px;
+            color: rgb(0, 0, 0);
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 1s, color 1s;
+        }
+        #modif:hover {
+            background-color: #000000;
+            color: rgb(255, 255, 255);
+        }
+        #supr {
+            background-color: #ffffff;
+            border: solid white 3px;
+            border-radius: 5px;
+            color: rgb(0, 0, 0);
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            transition: background-color 1s, color 1s;
+        }
+        #supr:hover {
+            background-color: #000000;
+            color: rgb(255, 255, 255);
+        }
+
+    </style>
+</head>
+<body>
+    <div id="create">
+        <h1>Créez votre personnage !</h1>
+        <select id="class_input">
+            <option value="Barbare">Barbare</option>
+            <option value="Mage">Mage</option>
+            <option value="Chasseur-de-démon">Chasseur de demon</option>
+            <option value="Féticheur">Féticheur</option>
+            <option value="Moine">Moine</option>
+            <option value="Croisé">Croisé</option>
+            <option value="Nécromancien">Nécromancien</option>
+        </select>
+        <input placeholder="Name" type="text" id="name_input">
+        <input placeholder="HP" type="number" id="hp_input">
+        <input placeholder="ATQ" type="number" id="atq_input"><br>
+        <button id="valid" onclick="send_champion()">Ajouter</button>
+
+
+    </div>
+        <h1>Liste des personnages</h1>
+        <div id="content">Vous devez activer JS</div>
+
+</body>
+</html>
