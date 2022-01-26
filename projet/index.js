@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 async function load_data() {
     const contentElement = document.getElementById("content");
-    const request = await fetch("/projet/perso.php");
+    const request = await fetch("projet/perso.php");
     const persos = await request.json();
     contentElement.innerHTML = "";
     for (const perso of persos) {
@@ -32,7 +32,7 @@ async function send_champion() {
         "classe": classe,"name": name, "hp": hp, "atq": atq,
         "imageSrc": `/images/${classe}.jpg`
     }
-    await fetch("/projet/add.php", {
+    await fetch("projet/add.php", {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
@@ -46,7 +46,7 @@ async function send_champion() {
 
 async function modif_Perso(id) {
     const contentElement = document.getElementById(`perso-${id}`);
-    const request = await fetch("/projet/perso.php");
+    const request = await fetch("projet/perso.php");
     const persos = await request.json();
     let champ;
     for (const perso of persos){
@@ -79,9 +79,9 @@ async function sauv_Perso(id) {
     const atq = parseInt(document.getElementById("atq_change").value);
     const champion = {
         "classe": classe,"name": name, "hp": hp, "atq": atq, "id": id,
-        "imageSrc": `/images/${classe}.jpg`
+        "imageSrc": `images/${classe}.jpg`
     };
-    await fetch("/projet/edit.php", {
+    await fetch("projet/edit.php", {
         method: "PUT",
         headers: {
             'Content-Type': 'application/json'
@@ -95,7 +95,7 @@ async function sauv_Perso(id) {
 
 async function supr_Perso(id) {
     const champion = {"id":id};
-    await fetch("/projet/del.php", {
+    await fetch("projet/del.php", {
         method: "DELETE",
         headers: {
             'Content-Type': 'application/json'
