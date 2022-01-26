@@ -4,6 +4,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header($_SERVER["SERVER_PROTOCOL"] . " 405 Method Not Allowed", true, 405);
     exit;
 }
+
 $inputJSON = file_get_contents('php://input'); 
 $perso = json_decode($inputJSON, TRUE);
 $file_name = "data.json";

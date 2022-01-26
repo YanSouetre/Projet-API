@@ -20,16 +20,18 @@ async function load_data() {
     }
 }
 async function send_champion() {
-    // Création du champion
+    const contentElement = document.getElementById("err_mess");
     const classe = document.getElementById("class_input").value;
     const name = document.getElementById("name_input").value;
     const hp = parseInt(document.getElementById("hp_input").value);
     const atq = parseInt(document.getElementById("atq_input").value);
+    if (!classe || !name || !hp|| !atq){
+        contentElement.innerHTML = `<div id=err_mess style="color:#FF0000;">Vérifiez que tous les champs soient remplis !</div>`;}
+    else{
     const champion = {
         "classe": classe,"name": name, "hp": hp, "atq": atq,
         "imageSrc": `/images/${classe}.jpg`
-    };
-    // envoi du champion en POST
+    }
     await fetch("/projet/add.php", {
         method: "POST",
         headers: {
@@ -37,6 +39,8 @@ async function send_champion() {
         },
         body: JSON.stringify(champion)
     });
+    contentElement.innerHTML = `<div id=err_mess style="color:#83FF00;"> Votre personnage ${name} a été créé</div>`;
+    } 
     await load_data();
 }
 
@@ -50,24 +54,25 @@ async function modif_Perso(id) {
             champ = perso;
         }
     }
-    contentElement.innerHTML = `    <input placeholder="name" type="text" id="name_change"> 
-                                    <img id= img src="${champ.imageSrc}"> 
-                                    <select id="class_change">
-                                        <option value="Barbare">Barbare</option>
-                                        <option value="Mage">Mage</option>
-                                        <option value="Chasseur-de-démon">Chasseur de demon</option>
-                                        <option value="Féticheur">Féticheur</option>
-                                        <option value="Moine">Moine</option>
-                                        <option value="Croisé">Croisé</option>
-                                        <option value="Nécromancien">Nécromancien</option>
-                                    </select> <br> 
-                                    <input placeholder="hp" type="number" id="hp_change"> <br>  
-                                    <input placeholder="atq" type="number" id="atq_change"> <br> 
-                                    <button onclick="sauv_Perso('${champ.id}')" id="modif">Sauvegarder</button> 
-                                    <button onclick="load_data()" id="supr">Annuler</button>`;
+    contentElement.innerHTML = `<input value="${champ.name}" type="text" id="name_change"> 
+                                <img id= img src="${champ.imageSrc}"> 
+                                <select id="class_change">
+                                    <option value="${champ.classe}">${champ.classe}</option>
+                                    <option value="Barbare">Barbare</option>
+                                    <option value="Mage">Mage</option>
+                                    <option value="Chasseur-de-démon">Chasseur de demon</option>
+                                    <option value="Féticheur">Féticheur</option>
+                                    <option value="Moine">Moine</option>
+                                    <option value="Croisé">Croisé</option>
+                                    <option value="Nécromancien">Nécromancien</option>
+                                </select> <br> 
+                                hp:<input value="${champ.hp}" type="number" id="hp_change"> <br>  
+                                atq:<input value="${champ.atq}" type="number" id="atq_change"> <br> 
+                                <button onclick="sauv_Perso('${champ.id}')" id="modif">Sauvegarder</button> 
+                                <button onclick="load_data()" id="supr">Annuler</button>`;  
 }
 
-async function sauv_Perso(id) {
+async function sauv_Perso(id) {  
     const classe = document.getElementById("class_change").value;
     const name = document.getElementById("name_change").value;
     const hp = parseInt(document.getElementById("hp_change").value);
